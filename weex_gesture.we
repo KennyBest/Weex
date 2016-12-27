@@ -1,0 +1,48 @@
+/**
+目前weex支持4种手势
+对某一个元素添加手势时使用on+方法构建属性的方式
+Touch
+  touchstart
+  touchmove
+  touchend
+Pan
+  panstart
+  panmove
+  panend
+Swipe   一些列的触摸点仅会触发swipe手势
+LongPress 超过500ms甚至更多时触发longpress手势
+
+touch 慢 不简单 精细
+pan   响应快 简单 不精细
+
+手势属性
+  direction 只有Swipe手势才有，up left bottom right
+  changedTouches 触摸动作数组 每一个touch pointer都有以下属性
+    identifier touch指针的唯一标识符
+    pageX  相当于document左边距的X轴坐标
+    pageY  相当于document顶部的Y轴坐标
+    screenX 相当于屏幕的X轴坐标
+    screenY 相当于屏幕的Y轴坐标
+
+*/
+
+<template>
+  <div style="background-color: red; width: 200; height: 100;" ontouchstart="handleTouchstart" ontouchend="handleTouchend"></div>
+</template>
+
+<script>
+  module.exports = {
+
+    methods: {
+      handleTouchstart: function (eventProperties) {
+        console.log('touch start');
+        var touch = eventProperties.changedTouches
+        console.log(touch);
+      },
+
+      handleTouchend: function(eventProperties) {
+        console.log('touch end');
+      }
+    }
+  }
+</script>

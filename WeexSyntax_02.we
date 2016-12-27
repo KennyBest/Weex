@@ -1,0 +1,133 @@
+/**
+style CSS的样式设置 prop-key: prop-value格式 每一个属性后面必须;分开
+样式只会出现在template 和 style 中
+*/
+
+/**
+Event
+所有的事件都是以on作为前缀的，
+每个事件对象都包含type target timestamp 3个属性
+将方法当作参数传递 内联响应
+*/
+
+/**
+DisPlay Logic Control : 显示逻辑控制
+if 根据true/false来判断一个组件是否显示 true时会被创建 false会被移除
+repeat 只是为了数组加载，数组里面的每一个元素也是结构化数据，这意味着你可以复制组件，然后可以直接绑定数据元素属性
+  如果使用不属于数组元素中属性时，也可以通过
+  repeat的语法拓展
+    1.使用$index获取数组的起始索引 0
+    2.明确数组里面元素的key 和 value 这是使用的时候必须通过点语法调用数据，否则无法加载
+    3.使用track-by来标记属性 标明属性的时候不要使用数据绑定语法(即 {{元素名}} )  --- 还不太明白
+    用法： 当前改变数组中的元素时，track-by标记的字段如果有相同的 那么会自动复用当前相同的块
+    4. if 与 repeat属性对应的值 可以省去'{{}}'  效果一样
+*/
+
+/**
+Render Login Control： 加载逻辑控制
+append属性 没有数据绑定 不会改变最终的加载结果，但是它决定这个组件是以树状还是带子节点的单个节点形式加载
+有两个选项 tree 其子节点全部加载完毕后 它才加载
+node: 自身先加载完毕，然后里面的元素按顺序一个接一个地加载
+显示自身来说 node加载比tree加载快一点，但是总的加载时间 node大于tree的
+默认是按node的形式加载的，以tree形式加载的元素里面所有的子元素也是按tree形式加载
+*/
+
+/**
+Composed Component 静态组件 (常用模块的封装)
+
+组件嵌套组件
+1.每一个静态组件都有一个独立的style工作域
+2.如果子组件有id属性，可以通过this.$vm(id)来获取子组件的上下文，利用this.$el(id)来获得这个元素
+3.如果你想监听数据变化 必须保证关键字在data中明确地存在 ---
+*/
+
+/**
+Find an Element: 查找元素
+在Weex里面 通常给一个元素设置id属性 作为此元素的唯一标识符
+*/
+
+<template>
+  <container style="flex-direction: row;">
+    <text class="button" onclick="toggle">Toggle</text>
+    <image class="thumb" src="http://t.cn/RGE3AJt" onclick="handler" if="{{shown}}"></image>
+
+    <container repeat="{{list}}" class="{{gender}}" track-by="nickname" style="flex-direction: row">
+      <image class="avatar"src="{{avatar}}"></image>
+      <text>{{nickname}} - {{group}}</text>
+    </container>
+
+    <!-- <container repeat="{{v in list}}" class="{{gender}}"  style="flex-direction: row">
+      <image class="avatar" src="{{v.avatar}}"></image>
+      <text>No. {{$index + 1}}</text>
+      <text>{{v.nickname}} - {{group}}</text>
+    </container> -->
+
+    <container id="world" append="tree">
+      <text>Hello World!</text>
+    </container>
+
+    <container id="weex" append="node">
+      <text>Hello Weex!</text>
+    </container>
+
+    <WeexComposedComponents_foo title={{composedData.title}} image={{composedData.image}}></WeexComposedComponents_foo>
+    <text style="color: green;">测试静态组件</text>
+
+    <text id="scrollFlag" style="color: brown;">SrollFlag</text>
+    <container style="flex-direction: row; height: 800; background-color: green;">
+    </container>
+    <text onclick="backToTop" style="color: red;"> Back to Top</text>
+  </container>
+</template>
+
+<style>
+.button {
+  margin-top: 20px;
+  text-align: left;
+  color: red;
+}
+.thumb {
+  width: 200;
+  height: 200;
+  margin-top: 10px;
+}
+.avatar {
+  margin-left: 10px;
+  width: 50;
+  height: 50;
+}
+</style>
+
+<script>
+var dom = require('@weex-module/dom')
+module.exports = {
+  data: {
+    shown: true,
+    group: 'iOS',
+    list: [
+      {gender: 'male', nickname: 'Li Lei', avatar: 'http://t.cn/RGE3AJt'},
+      {gender: 'female', nickname: 'Han Meimei', avatar: 'http://t.cn/RGE3AJt'},
+      {gender: 'male', nickname: 'BB', avatar: 'http://t.cn/RGE3AJt'},
+    ],
+    composedData: {
+      title: '静态组件',
+      image: 'http://t.cn/RGE3AJt'
+    }
+  },
+  methods: {
+    handler: function() {
+      console.log("click image")
+    },
+    toggle: function() {
+      this.shown = !this.shown;
+      console.log("click toggle");
+    },
+    backToTop: function() {
+      alert('滚了');
+      console.log('滚动到标记节点');
+      var scrollFlag = this.$el('scrollFlag')
+      dom.scrollToElement(scrollFlag)
+    }
+  }
+}
+</script>

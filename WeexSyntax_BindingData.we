@@ -1,0 +1,73 @@
+/**
+每一个we文件包含3部分
+template 必须的 声明有什么组件以及组件的属性
+style 可选的 如何显示
+script 可选的 显示的数据以及响应方法
+*/
+
+/**
+Weex支持简单的js表达式，但是在每一个数据项中只能有单个表达式；这个表达式在当前上下文的数据域内执行
+仅使用简单的操作符时，内置表达式很便利，如果更复杂的时候就要使用使用计算属性
+
+在script里面data与methods中不能有重复字段，否则使用this.调用的时候，两个都会被调用
+
+在数据绑定中一些特殊属性的用例 style class  if  repeat static
+
+*/
+<template>
+  /* ---数据绑定---- */
+  <container style="flex-direction: row;">
+    <text style="font-size: {{title.size}}">{{title.companyName + ' ' + title.projectName}}</text>
+    <text style="font-size: 50">{{fullName}}</text>
+    <text onclick="changeName" style="margin-left:10px;">CHANGE NAME</text>
+
+    <text class="{{size}}">测试可变className</text>
+    <text class="title {{status}}">测试有前缀的可变类名</text>
+  </container>
+</template>
+
+<script>
+module.exports = {
+  data: {
+    // size: 48,
+    // title: 'Kede iOS Group'
+
+    // 可以使用点语法
+    title: {
+      size: 48,
+      value: 'Kede iOS Team',
+      companyName: 'Kede',
+      projectName: 'iOS Group',
+      teamName: 'iOS',
+      memberName: 'lucien'
+    },
+    // size: 'test1',
+    status: 'test2'
+  },
+
+  // 计算属性
+  computed: {
+    fullName: {
+      get: function () {
+        return this.title.teamName + ' ' + this.title.memberName
+      },
+
+      set: function (v) {
+
+        var s = v.split(' ')
+        this.teamName = s[0]
+        this.memberName = s[1]
+
+        console.log(v)
+      }
+    }
+  },
+
+  // 方法
+  methods: {
+    changeName: function() {
+      this.fullName = 'Android kenny'
+    }
+  }
+}
+</script>

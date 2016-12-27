@@ -1,0 +1,82 @@
+<!--
+一个组件的定义就是一系列的选项去描述一个组件，这是总是关联到script的module.exports
+-->
+
+/**
+$el(id) : 通过明确的id返回元素对象
+@param id 元素的唯一标识符
+@return 元素对象
+@disscorn id仅在当前组件中构建， 如果想查找父组件或子组件，需要保证组件内可以通讯
+
+$vm(id)
+
+$getConfig() 获取全局配置信息
+@return config对象
+  bundleUrl: bundle地址
+  debug: 是否为debug模式
+  env: 环境对象
+    weexVersion: weexSDK版本号
+    appName:
+    appVersion
+    platform: 平台 iOS Android Web
+    deviceModel:
+
+    deviceWidth: 设备宽度 像素值
+    deviceHeight: 设备高度 像素值
+*/
+
+<template>
+<div style="width: {{w}}; height: {{h}}; background-color:red;" onclick="update"></div>
+</template>
+
+<style>
+</style>
+
+<script>
+
+// 在这里构建描述选项
+
+module.exports = {
+  data: function () {
+      return {w: 750, h: 200}
+  },
+
+  // 在methods events Liftcycle中使用函数时， 一定要先声明再使用 注意顺序正确
+
+  // Liftcycle 生命周期
+  init: function () {
+    console.log('ViewModel constructor begins');
+  },
+
+  // 检测到默认数据 但并不编译模板
+  created: function () {
+    console.log('Data observation finished');
+  },
+
+  ready: function () {
+    console.log('virtual DOM finished');
+
+    var config = this.$getConfig()
+    console.log(config);
+  },
+
+  // methods是一个字典集，在方法里面使用this.x 来读写数据，外部调用方法使用this.dothis
+  methods: {
+    update: function (e) {
+      this.h += 200
+    },
+
+    foo: function () {
+      this.$emit('customtype1', data)
+    }
+  },
+
+  // events 可以使你在视图模型创建时添加自定义事件接收者 通过函数名来监听并处理它们
+  events: {
+    customtype1: function (e) {
+      console.log(e.type, e.detail);
+    }
+  },
+}
+
+</script>

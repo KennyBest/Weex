@@ -1,0 +1,76 @@
+/**
+组件之间通讯
+一、子模块->父模块通讯
+子组件通过this.$dispatch([string type], [Object detail])方法来传递信息给父组件，第一个参数是消息的类别，第二个参数是消息对象
+如果此子组件的任意父组件使用$on([String type], [function callback])注册了相同类型的监听,这个回调将会被执行，
+二、父模块->子模块通讯
+父模块可以使用this.$vm([String id])获取子模块的上下文，通过这个上下文获取子模块信息
+三、父模块 -> 多个子模块
+使用this.$broadcast([String type], [object detail])
+四、相同级别下模块之间通讯 Siblings Communication
+一个子模块通过回调 将数据源给父模块 父模块在通过广播给目标子模块
+*/
+
+/**
+Page Config 页面配置  Data
+type为 config： 在最高层组件里面的额外script域中里面写一些接口配置和数据 这要配置一些sdk的版本号之类 Weex将在以后拓展这一部分
+type为 data ：
+目的是这样的 在script里面难于维护较大数据结构，weex允许我们在script中通过设置type=“data”来定义最初的数据 对于相同的字段名这里定义的数据总是会替换掉在script里面定义的数据
+*/
+
+// 有个问题 为什么使用we-element 加载不出来
+
+
+<template>
+  <container style="flex-direction: row;">
+    <foo id="fooEl" title="特定子模块" image="http://t.cn/RGE31hq"></foo>
+    <WeexComposedComponents_foo title={{composedData.title}} image={{composedData.image}}></WeexComposedComponents_foo>
+    <text>display content</text>
+    <text style="color: brown; text-align: center;" onclick="update">click to update foo title </text>
+    <text style="color: blue; margin-top: 20px; text-align: center;" onclick="sendBroadcast"> send broadcast to child components</text>
+  </container>
+</template>
+
+<script>
+module.exports = {
+  data: {
+    composedData: {
+      title: '静态组件',
+      image: 'http://t.cn/RGE3AJt'
+    }
+  },
+
+  // 这里注册
+  created: function() {
+    this.$on('notify', function(e){
+      // 子模块里面的图片被点击后 这个回调才执行
+      console.log('excute callback');
+      console.log(e.detail + 'composedFoo');
+    })
+  },
+  methods: {
+    update: function(e) {
+      var foo = this.$vm('fooEl')
+      foo.refreshTitle('NewFooTitle')
+      console.log(foo.title);
+    },
+
+    sendBroadcast: function() {
+      this.$broadcast('changeTitle', {
+        title: 'Broadcast'
+      })
+    }
+  }
+
+}
+</script>
+
+<!-- <script type="config">
+ios: {
+  version: '10.2'
+}
+</script>
+
+<script type="data">
+{y: 200}
+</script> -->
