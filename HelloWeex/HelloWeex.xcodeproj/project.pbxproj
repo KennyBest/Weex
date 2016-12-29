@@ -14,6 +14,7 @@
 		4E60BB401E0CEEF000E159BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E60BB3F1E0CEEF000E159BF /* Assets.xcassets */; };
 		4E60BB431E0CEEF000E159BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E60BB411E0CEEF000E159BF /* LaunchScreen.storyboard */; };
 		4E60BBFF1E0D1A5A00E159BF /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E60BBFE1E0D1A5A00E159BF /* TestViewController.m */; };
+		4EA287701E1365D600DD901B /* weex_list_sample.js in Resources */ = {isa = PBXBuildFile; fileRef = 4EA2876F1E1365D600DD901B /* weex_list_sample.js */; };
 		4EB2F92A1E10BD2200DB0371 /* HelloWorld.js in Resources */ = {isa = PBXBuildFile; fileRef = 4EB2F9291E10BD2200DB0371 /* HelloWorld.js */; };
 		4EB2F92C1E10FF7900DB0371 /* bundlejs in Resources */ = {isa = PBXBuildFile; fileRef = 4EB2F92B1E10FF7900DB0371 /* bundlejs */; };
 		4EB2F92F1E1106DB00DB0371 /* LLEventModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB2F92E1E1106DB00DB0371 /* LLEventModule.m */; };
@@ -38,6 +39,7 @@
 		4E60BB441E0CEEF000E159BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E60BBFD1E0D1A5A00E159BF /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		4E60BBFE1E0D1A5A00E159BF /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		4EA2876F1E1365D600DD901B /* weex_list_sample.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = weex_list_sample.js; sourceTree = "<group>"; };
 		4EB2F9291E10BD2200DB0371 /* HelloWorld.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = HelloWorld.js; sourceTree = "<group>"; };
 		4EB2F92B1E10FF7900DB0371 /* bundlejs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bundlejs; sourceTree = "<group>"; };
 		4EB2F92D1E1106DB00DB0371 /* LLEventModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLEventModule.h; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 		4EB2F9281E10BD1D00DB0371 /* JS */ = {
 			isa = PBXGroup;
 			children = (
+				4EA2876F1E1365D600DD901B /* weex_list_sample.js */,
 				4EB2F9301E1111C700DB0371 /* test_list.js */,
 				4EB2F9291E10BD2200DB0371 /* HelloWorld.js */,
 			);
@@ -207,6 +210,7 @@
 				4E60BB401E0CEEF000E159BF /* Assets.xcassets in Resources */,
 				4EB2F92A1E10BD2200DB0371 /* HelloWorld.js in Resources */,
 				4EB2F92C1E10FF7900DB0371 /* bundlejs in Resources */,
+				4EA287701E1365D600DD901B /* weex_list_sample.js in Resources */,
 				4E60BB3E1E0CEEF000E159BF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

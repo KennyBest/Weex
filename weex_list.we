@@ -1,0 +1,269 @@
+<!--
+<list> 列表标签
+支持的子控件: cell header refresh loading
+属性: loadmoreoffset : 触发加载更多时底部偏移量
+
+cell不用设置宽度 与父容器list宽度一致
+疑问： 这里的$index
+loadmoreoffset 怎么感觉不起作用
+竖直中心布局 align-items为什么没有效果
+-->
+<!--
+使用内置组件方式为 var dom = require('@weex-module/dom')
+-->
+<!--
+tiemr weex里面用的h5中的timer逻辑，不需要require引用 直接用它的api就好了
+-->
+<template>
+  <div>
+    <list style="width: {{width}}; height: {{height}};" class="list" loadmoreoffset=2000>
+      <!-- 头部 -->
+      <header class="header" style="width: {{width}}; height: 100px; background-color: red; align-items: center;">
+        <text style="font-color: white; text-align: center;">头部Header</text>
+      </header>
+      <!-- 下拉刷新 -->
+      <refresh class="refresh-view" display="{{refresh_display}}" onrefresh="onrefresh">
+        <text if="{{(refresh_display==='hide')}}"> ↓ pull to refresh </text>
+        <loading-indicator class="indicator"></loading-indicator>
+      </refresh>
+      <cell  onappear="onappear" ondisappear="ondisappear" onclick="clickCell" class="row" repeat="{{rows}}" index="{{$index}}">
+        <div class="item">
+          <text class="item-title">row{{id}}</text>
+        </div>
+      </cell>
+      <!-- 上拉加载 -->
+      <loading class="loading-view" display="{{loading_display}}" onloading="onloading">
+        <text if="{{(loading_display=== 'hide')}}">↑ Loadmore</text>
+        <loading-indicator class="indicator"></loading-indicator>
+      </loading>
+    </list>
+  </div>
+</template>
+
+<style>
+.list {
+background-color: white;
+}
+
+.count {
+  font-size: 48px;
+  margin: 10px;
+}
+
+.indicator {
+  height: 40px;
+  width: 40px;
+  color: #45b5f0;
+}
+
+.row {
+  /*width: {{width}};*/
+}
+
+.item {
+    justify-content: flex-start;
+    border-bottom-width: 2px;
+    border-bottom-color: #c0c0c0;
+    height: 100px;
+    padding: 20px;
+}
+
+.item-title {
+  color: red;
+  /*text-align: left;*/
+}
+
+/*下拉刷新视图*/
+.refresh-view {
+  width: 750;
+  height: 100;
+  display: -ms-flex;
+  display: -webkit-flex;
+  display: flex;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.loading-view {
+    width: 750;
+    height: 100;
+    display: -ms-flex;
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+  }
+  /*菊花*/
+  .indicator {
+    height: 60;
+    width: 60;
+    color: white;
+  }
+
+</style>
+
+<script>
+require('weex-components');
+var timer;
+module.exports = {
+  data: {
+    refresh_display: 'hide',
+    loading_display: 'hide',
+    lastIndex: 0,
+    width: 0,
+    height: 0,
+    appearMin: 1,
+    appearMax: 1,
+    appearIds: [],
+    rows: [
+      {id: 1},
+      {id: 2},
+      {id: 3},
+      {id: 4},
+      {id: 5},
+      {id: 6},
+      {id: 7},
+      {id: 8},
+      {id: 9},
+      {id: 10},
+      {id: 11},
+      {id: 12},
+      {id: 13},
+      {id: 14},
+      {id: 15}
+      // {id: 16},
+      // {id: 17},
+      // {id: 18},
+      // {id: 19},
+      // {id: 20},
+      // {id: 21},
+      // {id: 22},
+      // {id: 23},
+      // {id: 24},
+      // {id: 25},
+      // {id: 26},
+      // {id: 27},
+      // {id: 28},
+      // {id: 29}
+    ],
+    moreRows: [
+      {id: 16},
+      {id: 17},
+      {id: 18},
+      {id: 19}
+    ]
+  },
+
+  // 检测到数据 且未编译模板
+  created: function () {
+    var config = this.$getConfig();
+    this.width = config.env.deviceWidth;
+    // 状态栏导航栏高度 64 但是style里面高度单位为pixel
+
+    this.height = config.env.deviceHeight;
+
+    this.lastIndex = this.rows.length;
+    console.log(this.lastIndex);
+
+    nativeLog('>>>>', this.height);
+    var stream = require('@weex-module/stream');
+    stream.fetch({
+      method: 'GET',
+      url: "http://httpbin.org/get",
+      type: 'json'
+    }, function(response) {
+      //
+      console.log("走到这一步");
+      console.log(response.data);
+    }, function(response) {
+      // 处理进度
+    });
+
+  },
+
+  methods: {
+    onappear: function (e) {
+      var appearId = this.rows[e.target.attr.index].id;
+      nativeLog('+++++', appearId);
+      var appearIds = this.appearIds;
+      appearIds.push(appearId);
+      this.getMinAndMaxIds(appearIds);
+    },
+
+    ondisappear: function (e) {
+      var disAppearId = this.rows[e.target.attr.index].id;
+      nativeLog('+++++', disAppearId);
+      var appearIds = this.appearIds;
+      var index = appearIds.indexOf(disAppearId);
+      if (index > -1) {
+        appearIds.splice(index, 1);
+      }
+      this.getMinAndMaxIds(appearIds);
+    },
+
+    getMinAndMaxIds: function (e) {
+      var appearIds = this.appearIds.sort(function (a, b) {
+        return a - b;
+      });
+      this.appearIds = appearIds;
+      this.appearMax = appearIds[appearIds.length - 1];
+      this.appearMin = appearIds[0];
+    },
+
+    // 点击cell
+    clickCell: function (e) {
+      console.log(e.target.attr.index);
+      nativeLog('click', e.target.attr.index);
+    },
+
+    onrefresh: function (e) {
+      var self = this;
+      self.refresh_display = 'show';
+
+      this.showToast('onrefresh');
+
+      setTimeout(function(){
+        while (self.rows.length > 15) {
+          self.rows.pop();
+        }
+          self.refresh_display = 'hide';
+      }, 3000);
+      // this.$call('timer', 'setTimeout', function () {
+      //   self.refresh_display = 'hide';
+      // }, 3000);
+    },
+
+    onloading: function() {
+      var self = this;
+       self.loading_display = 'show';
+
+       this.showToast('onloading');
+
+      //  this.$call('timer', 'setTimeout', function () {
+      //    if (self.rows.length <= 33) {
+      //        self.rows.push(self.moreRows[self.rows.length - 29]);
+      //      }
+      //    self.loading_display = 'hide';
+      //  }, 3000);
+
+       setTimeout(function(){
+         if (self.rows.length <= self.lastIndex) {
+             self.rows.push(self.moreRows[self.rows.length - 15]);
+             self.lastIndex = self.rows.length;
+          }
+         self.loading_display = 'hide';
+       }, 3000);
+    },
+
+    // 提示
+    showToast: function (str) {
+      var modal = require('@weex-module/modal');
+      modal.toast({'message': str, 'duration': 2});
+    },
+  }
+}
+</script>

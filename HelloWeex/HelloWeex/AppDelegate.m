@@ -26,9 +26,9 @@
         _testViewController = [[TestViewController alloc] init];
         
         //
-        NSString *path = [NSString stringWithFormat:@"file://%@/bundlejs/index.js",[NSBundle mainBundle].bundlePath];
+//        NSString *path = [NSString stringWithFormat:@"file://%@/bundlejs/index.js",[NSBundle mainBundle].bundlePath];
         
-//        NSString *path = [NSString stringWithFormat:@"file://%@", [[NSBundle mainBundle] pathForResource:@"test_list" ofType:@"js"]];
+        NSString *path = [NSString stringWithFormat:@"file://%@", [[NSBundle mainBundle] pathForResource:@"weex_list_sample" ofType:@"js"]];
         _testViewController.url = [NSURL URLWithString:path];
     }
     

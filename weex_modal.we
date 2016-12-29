@@ -1,0 +1,79 @@
+<!-- weex alert单元 -->
+<template>
+  <container>
+    <text style="font-size: 50; text-align: center;">modal单元</text>
+    <text clase="modal" onclick="showToast">Toast展示</text>
+    <!-- 单个按钮 -->
+    <text clase="modal" onclick="showAlert">Alert展示</text>
+    <!-- 两个按钮 -->
+    <text clase="modal" onclick="showConfirm">Confirm展示</text>
+    <!-- 带输入框的样式 -->
+    <text clase="modal" onclick="showPrompt">Prompt展示</text>
+  </container>
+</template>
+
+<style>
+.modal {
+  font-size: 40;
+  text-align: left;
+  border-width: 10px;
+  border-radius: 5px;
+  border-color: red;
+}
+</style>
+
+<script>
+var modal = require('@weex-module/modal');
+module.exports = {
+  methods: {
+    showToast: function() {
+      modal.toast({
+        'message': 'Toast tip',
+        'duration': 1
+      });
+    },
+
+    // function() 为点击按钮回调
+    showAlert: function() {
+      var arg1 = 'Alert tip';
+      var arg2 = 'OK';
+      modal.alert({
+        message: arg1,
+        okTitle: arg2
+      }, function() {
+        console.log('alert show complete');
+      });
+    },
+
+    // function(result){} 点击按钮回调 result： string类型 按钮的标题
+    showConfirm: function() {
+      var arg1 = 'Confirm type tip';
+      var arg2 = 'OK';
+      var arg3 = 'cancel';
+
+      modal.confirm({
+        message: arg1,
+        okTitle: arg2,
+        cancelTitle: arg3
+      }, function(result){
+        console.log('confirm type result' + result);
+      });
+    },
+
+    showPrompt: function() {
+      var arg1 = 'Prompt type tip';
+      var arg2 = 'ok';
+      var arg3 = 'cancel';
+
+        modal.prompt({
+          message: arg1,
+          okTitle: arg2,
+          cancelTitle: arg3
+        }, function(ret){
+          console.log(ret.result + ',' + ret.data);
+        });
+    },
+
+  }
+}
+</script>

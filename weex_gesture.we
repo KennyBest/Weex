@@ -17,6 +17,7 @@ pan   响应快 简单 不精细
 
 手势属性
   direction 只有Swipe手势才有，up left bottom right
+  // 这里怎么定义的
   changedTouches 触摸动作数组 每一个touch pointer都有以下属性
     identifier touch指针的唯一标识符
     pageX  相当于document左边距的X轴坐标
