@@ -21,6 +21,7 @@
 		4EB2F9311E1111C700DB0371 /* test_list.js in Resources */ = {isa = PBXBuildFile; fileRef = 4EB2F9301E1111C700DB0371 /* test_list.js */; };
 		4EB2F9361E1113EE00DB0371 /* WXSelectComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB2F9331E1113EE00DB0371 /* WXSelectComponent.m */; };
 		4EB2F9371E1113EE00DB0371 /* WXImgLoaderDefaultImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB2F9351E1113EE00DB0371 /* WXImgLoaderDefaultImpl.m */; };
+		B9AE9FB51E1550CD00132AC6 /* WXDatePickerComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AE9FB41E1550CD00132AC6 /* WXDatePickerComponent.m */; };
 		D276E6DDF723D33FA1A9392F /* libPods-HelloWeex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F14CABAAEBE229D711AF96D9 /* libPods-HelloWeex.a */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,8 @@
 		4EB2F9331E1113EE00DB0371 /* WXSelectComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXSelectComponent.m; sourceTree = "<group>"; };
 		4EB2F9341E1113EE00DB0371 /* WXImgLoaderDefaultImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXImgLoaderDefaultImpl.h; sourceTree = "<group>"; };
 		4EB2F9351E1113EE00DB0371 /* WXImgLoaderDefaultImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXImgLoaderDefaultImpl.m; sourceTree = "<group>"; };
+		B9AE9FB31E1550CD00132AC6 /* WXDatePickerComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXDatePickerComponent.h; sourceTree = "<group>"; };
+		B9AE9FB41E1550CD00132AC6 /* WXDatePickerComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXDatePickerComponent.m; sourceTree = "<group>"; };
 		F14CABAAEBE229D711AF96D9 /* libPods-HelloWeex.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HelloWeex.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -95,6 +98,8 @@
 				4E60BBFE1E0D1A5A00E159BF /* TestViewController.m */,
 				4EB2F92D1E1106DB00DB0371 /* LLEventModule.h */,
 				4EB2F92E1E1106DB00DB0371 /* LLEventModule.m */,
+				B9AE9FB31E1550CD00132AC6 /* WXDatePickerComponent.h */,
+				B9AE9FB41E1550CD00132AC6 /* WXDatePickerComponent.m */,
 				4EB2F9321E1113EE00DB0371 /* WXSelectComponent.h */,
 				4EB2F9331E1113EE00DB0371 /* WXSelectComponent.m */,
 				4EB2F9341E1113EE00DB0371 /* WXImgLoaderDefaultImpl.h */,
@@ -270,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9AE9FB51E1550CD00132AC6 /* WXDatePickerComponent.m in Sources */,
 				4E60BB3B1E0CEEF000E159BF /* ViewController.m in Sources */,
 				4E60BB381E0CEEF000E159BF /* AppDelegate.m in Sources */,
 				4EB2F9361E1113EE00DB0371 /* WXSelectComponent.m in Sources */,
