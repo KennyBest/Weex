@@ -1,0 +1,36 @@
+<template>
+  <wxc-navpage
+				data-role="none"
+				height={{navBarHeight}}
+				background-color={{backgroundcolor}}
+				title='我的'
+				title-color='white'
+				right-item-title='设置'
+				right-item-color='white'
+				>
+      <text style="font-size: 50px; text-align: center; color: red;">我的</text>
+  </wxc-navpage>
+</template>
+
+<script>
+require('weex-components');
+module.exports = {
+  data: {
+			navBarHeight: 128,
+			backgroundcolor: "red",
+			title: '我的',
+			leftTitle: '',
+			leftItemColor: '',
+			leftItemSrc: 'http://pic.toomao.com/3d415d986d0fb3079b0dbe9c6b9f3d593955062a',
+			rightTitle: '',
+			rightItemColor: '',
+			rightItemSrc: '',
+		},
+
+  created: function() {
+    this.$on('naviBar.rightItem.click', function(e) {
+      nativeLog('点击了设置按钮');
+    });
+  }
+}
+</script>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E3DCBE81E1638D900AF8387 /* kedeJS in Resources */ = {isa = PBXBuildFile; fileRef = 4E3DCBE71E1638D900AF8387 /* kedeJS */; };
 		4E60BB351E0CEEF000E159BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E60BB341E0CEEEF00E159BF /* main.m */; };
 		4E60BB381E0CEEF000E159BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E60BB371E0CEEF000E159BF /* AppDelegate.m */; };
 		4E60BB3B1E0CEEF000E159BF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E60BB3A1E0CEEF000E159BF /* ViewController.m */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		13F43B84B68E359CCDA97966 /* Pods-HelloWeex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloWeex.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HelloWeex/Pods-HelloWeex.debug.xcconfig"; sourceTree = "<group>"; };
 		37933AB9BFEB4197C2E7D327 /* Pods-HelloWeex.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloWeex.release.xcconfig"; path = "Pods/Target Support Files/Pods-HelloWeex/Pods-HelloWeex.release.xcconfig"; sourceTree = "<group>"; };
+		4E3DCBE71E1638D900AF8387 /* kedeJS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = kedeJS; sourceTree = "<group>"; };
 		4E60BB301E0CEEEF00E159BF /* HelloWeex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloWeex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E60BB341E0CEEEF00E159BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4E60BB361E0CEEF000E159BF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 		4EB2F9281E10BD1D00DB0371 /* JS */ = {
 			isa = PBXGroup;
 			children = (
+				4E3DCBE71E1638D900AF8387 /* kedeJS */,
 				4EA2876F1E1365D600DD901B /* weex_list_sample.js */,
 				4EB2F9301E1111C700DB0371 /* test_list.js */,
 				4EB2F9291E10BD2200DB0371 /* HelloWorld.js */,
@@ -214,6 +217,7 @@
 				4E60BB431E0CEEF000E159BF /* LaunchScreen.storyboard in Resources */,
 				4E60BB401E0CEEF000E159BF /* Assets.xcassets in Resources */,
 				4EB2F92A1E10BD2200DB0371 /* HelloWorld.js in Resources */,
+				4E3DCBE81E1638D900AF8387 /* kedeJS in Resources */,
 				4EB2F92C1E10FF7900DB0371 /* bundlejs in Resources */,
 				4EA287701E1365D600DD901B /* weex_list_sample.js in Resources */,
 				4E60BB3E1E0CEEF000E159BF /* Main.storyboard in Resources */,

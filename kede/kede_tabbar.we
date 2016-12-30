@@ -1,0 +1,98 @@
+<template>
+  <div>
+    <wxc-tabbar tab-items={{tabItems}} selected-color={{green}} unselected-color={{white}} ></wxc-tabbar>
+  </div>
+</template>
+
+<script>
+require('weex-components');
+
+module.exports = {
+    data: {
+      tabItems: [
+        {
+          index: 0,
+          title: '首页',
+          titleColor: '#000000',
+          image: 'http://gtms01.alicdn.com/tps/i1/TB1qw.hMpXXXXagXXXX9t7RGVXX-46-46.png',
+          selectedImage: 'http://gtms04.alicdn.com/tps/i4/TB16jjPMpXXXXazXVXX9t7RGVXX-46-46.png',
+          src: 'home.js',
+          icon: '',
+          visibility: 'visible'
+        },
+        {
+          index: 1,
+          title: '分类',
+          titleColor: '#000000',
+          image: 'http://gtms01.alicdn.com/tps/i1/TB1qw.hMpXXXXagXXXX9t7RGVXX-46-46.png',
+          selectedImage: 'http://gtms04.alicdn.com/tps/i4/TB16jjPMpXXXXazXVXX9t7RGVXX-46-46.png',
+          src: 'category.js',
+          icon: '',
+          visibility: 'visible'
+        },
+        {
+          index: 2,
+          title: '购物车',
+          titleColor: '#000000',
+          image: 'http://gtms01.alicdn.com/tps/i1/TB1qw.hMpXXXXagXXXX9t7RGVXX-46-46.png',
+          selectedImage: 'http://gtms04.alicdn.com/tps/i4/TB16jjPMpXXXXazXVXX9t7RGVXX-46-46.png',
+          src: 'cart.js',
+          icon: '',
+          visibility: ''
+        },
+        {
+          index: 3,
+          title: '我的',
+          titleColor: '#000000',
+          image: 'http://gtms01.alicdn.com/tps/i1/TB1qw.hMpXXXXagXXXX9t7RGVXX-46-46.png',
+          selectedImage: 'http://gtms04.alicdn.com/tps/i4/TB16jjPMpXXXXazXVXX9t7RGVXX-46-46.png',
+          src: 'my.js',
+          icon: '',
+          visibility: ''
+        }
+      ]
+    },
+
+    created: function() {
+      var bundleUrl = this.$getConfig().bundleUrl;
+      var dir = 'kedeJS';
+      console.log('hit', bundleUrl);
+
+      var nativeBase;
+      var isiOSAssets = bundleUrl.indexOf('file:///') >= 0;
+      if (isiOSAssets) {
+        nativeBase = bundleUrl.substring(0, bundleUrl.lastIndexOf('/') + 1);
+      }
+      else {
+        var host = 'localhost: 12580';
+        var matches = /\/\/([^\/]+?)\//.exec(this.$getConfig().bundleUrl);
+        if (matches && matches.length >= 2) {
+          host = matches[1];
+        }
+        //  + '/build/'
+        nativeBase = 'http://' + host + '/' + dir + '/';
+      }
+        var h5Base = './' ;
+        // in Native
+        var base = nativeBase;
+        if (typeof window === 'object') {
+        // in Browser or WebView
+          base = h5Base;
+        }
+
+        for(var i = 0; i < this.tabItems.length; i++) {
+          var tabItem = this.tabItems[i];
+          tabItem.src = base + tabItem.src;
+        }
+    },
+
+    ready: function (e) {
+        var vm = this;
+        vm.$on('tabBar.onClick',function(e){
+          var detail= e.detail;
+          nativeLog('tabBar.onClick ' + detail.index);
+        });
+      }
+}
+
+</script>

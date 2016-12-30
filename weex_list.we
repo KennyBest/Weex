@@ -16,6 +16,7 @@ tiemr weex里面用的h5中的timer逻辑，不需要require引用 直接用它�
 -->
 <template>
   <div>
+
     <list style="width: {{width}}; height: {{height}};" class="list" loadmoreoffset=2000>
       <!-- 头部 -->
       <header class="header" style="width: {{width}}; height: 100px; background-color: red; align-items: center;">
