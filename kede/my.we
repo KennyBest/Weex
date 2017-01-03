@@ -20,6 +20,7 @@
           <div class="item" style="flex-direction:row;">
             <image class="icon" style="height: 60; width: 60;" src="https://gw.alicdn.com/tps/i3/TB1yeWeIFXXXXX5XFXXuAZJYXXX-210-210.png_60x60.jpg"></image>
             <text class="item-title">{{title}}</text>
+            <text class="item-subtitle">{{subTitle}}</text>
             <text class="arrow">></text>
           </div>
         </cell>
@@ -43,6 +44,13 @@
 
 .item-title {
   margin-left: 10px;
+}
+
+.item-subtitle {
+  position: absolute;
+  right: 50px;
+  font-size: 26px;
+  color: darkgray;
 }
 
 .arrow {
@@ -72,38 +80,47 @@ module.exports = {
       rows: [
         {
           title:"我的订单",
+          subTitle: "全部已购商品",
           id: 0
         },
         {
           title:"我的钱包",
+          subTitle: "优惠券、余额、积分",
           id: 1
         },
         {
           title:"我的试戴",
+          subTitle: "",
           id: 2
         },
         {
           title: "我的收藏",
+          subTitle: "",
           id: 3
         },
         {
           title: "我的消息",
+          subTitle: "",
           id: 4
         },
         {
           title: "我的关注",
+          subTitle: "",
           id: 5
         },
         {
           title: "账户安全",
+          subTitle: "",
           id: 6
         },
         {
           title: "意见反馈",
+          subTitle: "",
           id: 7
         },
         {
           title: "关于可得",
+          subTitle: "",
           id: 8
         },
       ],

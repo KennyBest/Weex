@@ -157,6 +157,15 @@
 	                {
 	                  "type": "text",
 	                  "classList": [
+	                    "item-subtitle"
+	                  ],
+	                  "attr": {
+	                    "value": function () {return this.subTitle}
+	                  }
+	                },
+	                {
+	                  "type": "text",
+	                  "classList": [
 	                    "arrow"
 	                  ],
 	                  "attr": {
@@ -188,6 +197,12 @@
 	  "item-title": {
 	    "marginLeft": 10
 	  },
+	  "item-subtitle": {
+	    "position": "absolute",
+	    "right": 50,
+	    "fontSize": 26,
+	    "color": "#A9A9A9"
+	  },
 	  "arrow": {
 	    "fontSize": 30,
 	    "color": "#D3D3D3",
@@ -217,30 +232,39 @@
 	    listHieght: 0,
 	    rows: [{
 	      title: "我的订单",
+	      subTitle: "全部已购商品",
 	      id: 0
 	    }, {
 	      title: "我的钱包",
+	      subTitle: "优惠券、余额、积分",
 	      id: 1
 	    }, {
 	      title: "我的试戴",
+	      subTitle: "",
 	      id: 2
 	    }, {
 	      title: "我的收藏",
+	      subTitle: "",
 	      id: 3
 	    }, {
 	      title: "我的消息",
+	      subTitle: "",
 	      id: 4
 	    }, {
 	      title: "我的关注",
+	      subTitle: "",
 	      id: 5
 	    }, {
 	      title: "账户安全",
+	      subTitle: "",
 	      id: 6
 	    }, {
 	      title: "意见反馈",
+	      subTitle: "",
 	      id: 7
 	    }, {
 	      title: "关于可得",
+	      subTitle: "",
 	      id: 8
 	    }]
 	  }},
