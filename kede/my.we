@@ -8,9 +8,52 @@
 				right-item-title='设置'
 				right-item-color='white'
 				>
-      <text style="font-size: 50px; text-align: center; color: red;">我的</text>
+
+      <!-- 列表 -->
+      <list class="list" style="height: {{listHieght}}">
+        <header>
+          <div>
+            <text style="font-size: 50px; text-align: center; color: black;">我的</text>
+          </div>
+        </header>
+        <cell class="row" repeat="{{rows}}" rownumber="{{id}}" onclick="oncellclick">
+          <div class="item" style="flex-direction:row;">
+            <image class="icon" style="height: 60; width: 60;" src="https://gw.alicdn.com/tps/i3/TB1yeWeIFXXXXX5XFXXuAZJYXXX-210-210.png_60x60.jpg"></image>
+            <text class="item-title">{{title}}</text>
+            <text class="arrow">></text>
+          </div>
+        </cell>
+      </list>
   </wxc-navpage>
 </template>
+
+<style>
+.item {
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom-width: 2px;
+  border-bottom-color: #c0c0c0;
+  height: 100px;
+  padding: 20px;
+}
+
+.icon {
+
+}
+
+.item-title {
+  margin-left: 10px;
+}
+
+.arrow {
+  font-size: 30px;
+  color: lightgray;
+  position: absolute;
+  right: 20px;
+}
+
+
+</style>
 
 <script>
 require('weex-components');
@@ -25,12 +68,60 @@ module.exports = {
 			rightTitle: '',
 			rightItemColor: '',
 			rightItemSrc: '',
+      listHieght: 0,
+      rows: [
+        {
+          title:"我的订单",
+          id: 0
+        },
+        {
+          title:"我的钱包",
+          id: 1
+        },
+        {
+          title:"我的试戴",
+          id: 2
+        },
+        {
+          title: "我的收藏",
+          id: 3
+        },
+        {
+          title: "我的消息",
+          id: 4
+        },
+        {
+          title: "我的关注",
+          id: 5
+        },
+        {
+          title: "账户安全",
+          id: 6
+        },
+        {
+          title: "意见反馈",
+          id: 7
+        },
+        {
+          title: "关于可得",
+          id: 8
+        },
+      ],
 		},
 
   created: function() {
     this.$on('naviBar.rightItem.click', function(e) {
       nativeLog('点击了设置按钮');
     });
+
+    var config = this.$getConfig();
+    this.listHieght = config.env.deviceHeight - this.navBarHeight;
+  },
+
+  methods: {
+    oncellclick: function(e) {
+      console.log(e.target.attr.rownumber);
+    },
   }
 }
 </script>
